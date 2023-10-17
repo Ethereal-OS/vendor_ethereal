@@ -22,11 +22,11 @@ endif
 
 # Versioning props
 ADDITIONAL_SYSTEM_PROPERTIES  += \
-    org.voidui.version=$(VoidUI_BASE_VERSION) \
-    org.voidui.version.display=$(CUSTOM_VERSION) \
-    org.voidui.build_date=$(CUSTOM_BUILD_DATE) \
-    org.voidui.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
-    org.voidui.build_type=$(CUSTOM_BUILD_TYPE) \
-    org.voidui.codename=$(VoidUI_BASE_VERSION) \
-    org.voidui.build_version=$(VoidUI_BUILD_VERSION) \
-    ro.voidui.maintainer=$(VOID_MAINTAINER)
+    ro.ethereal.version=$(ETHEREAL_BASE_VERSION) \
+    ro.ethereal.version.display=$(CUSTOM_VERSION) \
+    ro.ethereal.build_date=$(CUSTOM_BUILD_DATE) \
+    ro.ethereal.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
+    ro.ethereal.build_type=$(CUSTOM_BUILD_TYPE) \
+    ro.ethereal.codename=$(ETHEREAL_BASE_VERSION) \
+    ro.ethereal.build_version=$(VoidUI_BUILD_VERSION) \
+    ro.ethereal.maintainer=$(ETHEREAL_MAINTAINER)

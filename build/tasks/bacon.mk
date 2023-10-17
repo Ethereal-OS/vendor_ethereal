@@ -24,14 +24,13 @@ bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CUSTOM_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(CUSTOM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CUSTOM_TARGET_PACKAGE).sha256sum
 	$(hide) $(MD5) $(CUSTOM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CUSTOM_TARGET_PACKAGE).md5sum
-	$(hide) ./vendor/aosp/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(CUSTOM_VERSION).zip $(VoidUI_BASE_VERSION)
+	$(hide) ./vendor/ethereal/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(CUSTOM_VERSION).zip $(ETHEREAL_BASE_VERSION)
 	@echo -e ${CL_CYN}""${CL_CYN}
-	@echo -e ${CL_CYN}" _   _  _____  _____ ______  _   _  _____"${CL_CYN}
-	@echo -e ${CL_CYN}"| | | ||  _  ||_   _||  _  \| | | ||_   _|"${CL_CYN}
-	@echo -e ${CL_CYN}"| | | || | | |  | |  | | | || | | |  | |  "${CL_CYN}
-	@echo -e ${CL_CYN}"| | | || | | |  | |  | | | || | | |  | |  "${CL_CYN}
-	@echo -e ${CL_CYN}"\ \_/ /\ \_/ / _| |_ | |/ / | |_| | _| |_ "${CL_CYN}
-	@echo -e ${CL_CYN}" \___/  \___/  \___/ |___/   \___/  \___/ "${CL_CYN}
+	@echo -e ${CL_CYN}"o--o  o-O-o  o  o  o--o  o--o   o--o    O   o    "${CL_CYN}
+	@echo -e ${CL_CYN}"|       |    |  |  |     |   |  |      / \  |    "${CL_CYN}
+	@echo -e ${CL_CYN}"O-o     |    O--O  O-o   O-Oo   O-o   o---o |    "${CL_CYN}
+	@echo -e ${CL_CYN}"|       |    |  |  |     |  \   |     |   | |    "${CL_CYN}
+	@echo -e ${CL_CYN}"o--o    o    o  o  o--o  o   o  o--o  o   o O---o"${CL_CYN}                                 
 	@echo -e ${CL_CYN}""${CL_CYN}
 	@echo -e ${CL_CYN}"===========-Package Completed-==========="${CL_RST}
 	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(CUSTOM_TARGET_PACKAGE)${CL_RST}

@@ -14,12 +14,12 @@ except:
     urllib.parse = urlparse
     urllib.request = urllib2
 try:
-    url = "https://raw.githubusercontent.com/VoidUI-Devices/weekly_updates_ota/master/devices.json"
+    url = "https://raw.githubusercontent.com/Ethereal-OS/Ethereal-Devices/main/devices.json"
     response = urllib.request.urlopen(url, timeout=10)
     data = json.loads(response.read())
     for res in data:
         for version in res['supported_versions']:
-            if version['version_code'] == 'aosp-13':
+            if version['version_code'] == 'A13':
                 print (res['codename'])
                 break
 except:

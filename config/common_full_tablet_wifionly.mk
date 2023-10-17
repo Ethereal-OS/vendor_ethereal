@@ -1,2 +1,2 @@
 # Inherit full common VoidUI stuff
-$(call inherit-product, vendor/aosp/config/common_full.mk)
+$(call inherit-product, vendor/ethereal/config/common_full.mk)

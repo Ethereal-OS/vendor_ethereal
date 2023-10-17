@@ -1,4 +1,4 @@
 # Inherit common VoidUI stuff
-$(call inherit-product, vendor/aosp/config/common.mk)
+$(call inherit-product, vendor/ethereal/config/common.mk)
 
 PRODUCT_SIZE := full
