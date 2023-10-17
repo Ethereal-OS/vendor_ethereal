@@ -57,7 +57,7 @@ PRODUCT_COPY_FILES += \
 
 # Copy all custom init rc files
 PRODUCT_COPY_FILES += \
-    vendor/ethereal/prebuilt/common/etc/init/init.voidui-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.voidui-updater.rc
+    vendor/ethereal/prebuilt/common/etc/init/init.ethereal-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ethereal-updater.rc
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
