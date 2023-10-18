@@ -1,7 +1,7 @@
 # Branding
 $(call inherit-product, vendor/ethereal/config/branding.mk)
 
-PRODUCT_BRAND ?= VoidUI
+PRODUCT_BRAND ?= ETHEREAL
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 

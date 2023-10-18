@@ -1,7 +1,7 @@
 # Type of Build
 CUSTOM_BUILD_TYPE ?= COMMUNITY
 
-# VoidUI Props
+# Ethereal Props
 ETHEREAL_BASE_VERSION = AURA
 
 # Time Related
