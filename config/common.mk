@@ -248,8 +248,14 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Fonts
 $(call inherit-product, vendor/ethereal/config/fonts.mk)
 
-# GMS
-$(call inherit-product, vendor/gms/products/gms.mk)
+#PixelExtendedLauncher
+$(call inherit-product, vendor/PixelLauncherExtended/PixelLauncher.mk)
+
+# Gapps
+ifeq ($(WITH_GAPPS),true)
+$(call inherit-product, vendor/ethereal/config/gapps.mk)
+endif
+include vendor/ethereal/config/version.mk
 
 # OTA
 $(call inherit-product, vendor/ethereal/config/ota.mk)
