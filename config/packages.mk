@@ -1,7 +1,6 @@
 # Ethereal packages
 ifeq ($(WITH_GAPPS),false)
 	PRODUCT_PACKAGES += \
-	    Browser2 \
 	    BtHelper \
 	    Contacts \
 	    DeskClock \
@@ -12,8 +11,10 @@ ifeq ($(WITH_GAPPS),false)
 	    Lawnicons \
 	    LatinIME \
 	    Messaging \
-	    SettingsIntelligenceGoogle
- 
+	    SafetyHubPrebuilt \
+	    SecurityHubPrebuilt \
+	    SettingsIntelligenceGooglePrebuilt \
+	    Via
 endif
 
 
@@ -22,7 +23,6 @@ PRODUCT_PACKAGES += \
     Backgrounds \
     Eleven \
     Etar \
-    Jelly \
     Recorder \
     Music \
     Profiles \
@@ -33,20 +33,6 @@ PRODUCT_PACKAGES += \
 ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
 PRODUCT_PACKAGES += \
     AudioFX
-endif
-
-ifeq ($(PRODUCT_TYPE), go)
-PRODUCT_PACKAGES += \
-    TrebuchetQuickStepGo
-
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStepGo
-else
-PRODUCT_PACKAGES += \
-    TrebuchetQuickStep
-
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStep
 endif
 
 # Charger
