@@ -6,11 +6,9 @@ ifeq ($(WITH_GAPPS),false)
 	    DeskClock \
 	    Dialer \
 	    Gallery2 \
-	    Lawnchair \
-	    Lawnfeed \
-	    Lawnicons \
 	    LatinIME \
 	    Messaging \
+	    NexusLauncherRelease \
 	    SafetyHubPrebuilt \
 	    SecurityHubPrebuilt \
 	    SettingsIntelligenceGooglePrebuilt \
