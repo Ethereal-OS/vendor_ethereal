@@ -55,6 +55,10 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/ethereal/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
 
+# Enforce privapp-permissions whitelist
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.control_privapp_permissions=enforce
+
 # Copy all custom init rc files
 PRODUCT_COPY_FILES += \
     vendor/ethereal/prebuilt/common/etc/init/init.ethereal-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ethereal-updater.rc

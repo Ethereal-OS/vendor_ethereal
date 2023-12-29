@@ -1,46 +1,34 @@
 # Ethereal packages
 ifeq ($(WITH_GAPPS),false)
 	PRODUCT_PACKAGES += \
-	    BtHelper \
 	    Contacts \
 	    DeskClock \
 	    Dialer \
 	    Gallery2 \
 	    LatinIME \
 	    Messaging \
-	    NexusLauncherRelease \
-	    SafetyHubPrebuilt \
-	    SecurityHubPrebuilt \
-	    SettingsIntelligenceGooglePrebuilt \
-	    Via
+	    NexusLauncher \
+	    SafetyHub \
+	    SecurityHub \
+	    SettingsIntelligence 
+
 endif
 
 
 # Apps
 PRODUCT_PACKAGES += \
+    AudioFX \
     Backgrounds \
     Eleven \
     Etar \
     Recorder \
     Music \
     Profiles \
-    Seedvault
-    
-
-
-ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
-PRODUCT_PACKAGES += \
-    AudioFX
-endif
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
-
-ifneq ($(WITH_LINEAGE_CHARGER),false)
-PRODUCT_PACKAGES += \
-    lineage_charger_animation
-endif
+    RepainterService \
+    Seedvault \
+    Via \
+    WallpaperPicker \
+    WallpaperPicker2
 
 # Customizations
 PRODUCT_PACKAGES += \
