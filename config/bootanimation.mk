@@ -1,3 +1,4 @@
+TARGET_BOOT_ANIMATION_RES ?= undefined
 
 # Bootanimation
 ifeq ($(TARGET_BOOT_ANIMATION_RES),1080)

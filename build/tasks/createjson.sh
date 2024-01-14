@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-#$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=FILE_NAME $4=Ethereal_BASE_VERSION
+#$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=LINEAGE_VERSION
 existingOTAjson=./vendor/officialdevices/devices/$1.json
 output=$2/$1.json
 
@@ -31,10 +31,10 @@ if [ -f $existingOTAjson ]; then
 	oem=`grep -n "\"oem\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	device=`grep -n "\"device\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	filename=$3
-	version=`echo "$4" | cut -d'-' -f5`
+	version=`echo "$3" | cut -d'-' -f5`
 	v_max=`echo "$version" | cut -d'.' -f1 | cut -d'v' -f2`
 	v_min=`echo "$version" | cut -d'.' -f2`
-	version="$4"
+	version="$3"
 	download="https://sourceforge.net/projects/ethereal-os/files/$1/Releases/$3/download"
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
@@ -113,6 +113,7 @@ if [ -f $existingOTAjson ]; then
 }' >> $output
 
         echo "JSON file data for OTA support:"
+        echo "vendor/officialdevices/devices/$1.json"
 else
 	#if not already supported, create dummy file with info in it on how to
 	echo 'There is no official support for this device yet' >> $output;

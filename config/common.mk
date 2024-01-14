@@ -5,220 +5,182 @@ PRODUCT_BRAND ?= ETHEREAL
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    dalvik.vm.debug.alloc=0 \
+    keyguard.no_require_sim=true \
+    media.recorder.show_manufacturer_and_model=true \
+    net.tethering.noprovisioning=true \
+    persist.sys.disable_rescue=true \
+    ro.carrier=unknown \
+    ro.com.android.dataroaming=false \
+    ro.opa.eligible_device=true \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.storage_manager.enabled=true \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.clientidbase=android-google
 
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.com.google.clientidbase=android-google
-
 else
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
-
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
-
 endif
 
-# BtHelper
-PRODUCT_PACKAGES += \
-    BtHelper
-
+# AOSP recovery flashing
+ifeq ($(TARGET_USES_AOSP_RECOVERY),true)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    dalvik.vm.debug.alloc=0 \
-    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-    ro.error.receiver.system.apps=com.google.android.gms \
-    ro.com.android.dataroaming=false \
-    ro.atrace.core.services=com.google.android.gms,com.google.android.gms.ui,com.google.android.gms.persistent \
-    ro.com.android.dateformat=MM-dd-yyyy \
-    persist.sys.disable_rescue=true
-
-PRODUCT_PACKAGES += \
-    ImmersiveNavigationOverlay
+    persist.sys.recovery_update=true
+endif
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable ADB authentication
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=adb
 else
 # Enable ADB authentication
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=none
 
 # Disable extra StrictMode features on all non-engineering builds
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
 
-# Some permissions
+# Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/ethereal/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
+    vendor/ethereal/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/ethereal/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/ethereal/prebuilt/common/bin/50-ethereal.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-ethereal.sh
 
-# Enforce privapp-permissions whitelist
+ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
+PRODUCT_COPY_FILES += \
+    vendor/ethereal/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/ethereal/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/ethereal/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.control_privapp_permissions=enforce
+    ro.ota.allow_downgrade=true
+endif
+endif
 
-# Copy all custom init rc files
+# Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/ethereal/prebuilt/common/etc/init/init.ethereal-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ethereal-updater.rc
+    vendor/ethereal/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
+
+# Pixel sysconfig from Pixel XL (Photos)
+PRODUCT_COPY_FILES += \
+    vendor/ethereal/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
+
+# Copy all ETHEREAL-specific init rc files
+$(foreach f,$(wildcard vendor/ethereal/prebuilt/common/etc/init/*.rc),\
+	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
     vendor/ethereal/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
 
+# Privapp permissions
+PRODUCT_COPY_FILES += \
+    vendor/ethereal/config/permissions/privapp-permissions-custom.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-custom.xml
+
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.sip.voip.xml
+
+# Enable SIP+VoIP on all targets
+PRODUCT_COPY_FILES += \
+    vendor/ethereal/prebuilt/google/etc/permissions/privapp-permissions-googleapps-turbo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googleapps-turbo.xml
 
 # Enable wireless Xbox 360 controller support
 PRODUCT_COPY_FILES += \
-    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_PRODUCT)/usr/keylayout/Vendor_045e_Product_0719.kl
+    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/Vendor_045e_Product_0719.kl
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.control_privapp_permissions=enforce
+    ro.control_privapp_permissions=log
 
-# Power whitelist
-PRODUCT_COPY_FILES += \
-    vendor/ethereal/config/permissions/custom-power-whitelist.xml:system/etc/sysconfig/custom-power-whitelist.xml
+# Speed profile services and wifi-service to reduce RAM and storage
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
+WITH_DEXPREOPT_DEBUG_INFO := false
 
 # Strip the local variable table and the local variable type table to reduce
 # the size of the system image. This has no bearing on stack traces, but will
 # leave less information available via JDWP.
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 
+# Disable vendor restrictions
+PRODUCT_RESTRICT_VENDOR_FILES := false
+
+# Require all requested packages to exist
+$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(LINEAGE_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml)
+
 # Enable whole-program R8 Java optimizations for SystemUI and system_server,
 # but also allow explicit overriding for testing and development.
 SYSTEM_OPTIMIZE_JAVA ?= true
 SYSTEMUI_OPTIMIZE_JAVA ?= true
 
+# Config
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
+
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images \
     product_charger_res_images
 
 # Filesystems tools
 PRODUCT_PACKAGES += \
     fsck.ntfs \
-    mke2fs \
     mkfs.ntfs \
     mount.ntfs
 
-# Config
-PRODUCT_PACKAGES += \
-    SimpleDeviceConfig
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/bin/fsck.ntfs \
+    system/bin/mkfs.ntfs \
+    system/bin/mount.ntfs \
+    system/%/libfuse-lite.so \
+    system/%/libntfs-3g.so
 
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
 
-# Media
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    media.recorder.show_manufacturer_and_model=true
+# These packages are excluded from user builds
+PRODUCT_PACKAGES_DEBUG += \
+    procmem
 
-# Overlays
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/ethereal/overlay
-
-PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/ethereal/overlay/common
-
-# Black Background Overlay
+# Root
 PRODUCT_PACKAGES += \
-    DarkBgOverlay
+    adb_root
 
-# Cutout control overlay
-PRODUCT_PACKAGES += \
-    NoCutoutOverlay \
-    DummyCutoutOverlay
-
-# GameSpace
-PRODUCT_PACKAGES += \
-    GameSpace
-
-# TouchGestures
-PRODUCT_PACKAGES += \
-    TouchGestures
-
-# One Handed mode
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.support_one_handed_mode=true \
-
-# Hide navigation bar hint
-PRODUCT_PACKAGES += \
-    NavigationBarNoHintOverlay
-
-# Dex preopt
+# Dex/ART optimization
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUIGoogle \
-    NexusLauncherRelease
+    Settings \
+    Launcher3QuickStep \
+    SystemUI
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    pm.dexopt.boot=verify \
+    pm.dexopt.first-boot=quicken \
+    pm.dexopt.install=speed-profile \
+    pm.dexopt.bg-dexopt=everything
+
+ifneq ($(AB_OTA_PARTITIONS),)
+PRODUCT_PROPERTY_OVERRIDES += \
+    pm.dexopt.ab-ota=quicken
+endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
-# SystemUI plugins
-PRODUCT_PACKAGES += \
-    QuickAccessWallet
+-include $(WORKSPACE)/build_env/image-auto-bits.mk
+-include vendor/ethereal/config/partner_gms.mk
 
-# Gboard configuration
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.com.google.ime.theme_id=5 \
-    ro.com.google.ime.system_lm_dir=/product/usr/share/ime/google/d3_lms
-
-# SetupWizard configuration
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.setupwizard.enterprise_mode=1 \
-    ro.setupwizard.rotation_locked=true \
-    setupwizard.enable_assist_gesture_training=true \
-    setupwizard.theme=glif_v3_light \
-    setupwizard.feature.baseline_setupwizard_enabled=true \
-    setupwizard.feature.skip_button_use_mobile_data.carrier1839=true \
-    setupwizard.feature.show_pai_screen_in_main_flow.carrier1839=false \
-    setupwizard.feature.show_pixel_tos=false
-
-# StorageManager configuration
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.storage_manager.show_opt_in=false
-
-# OPA configuration
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.opa.eligible_device=true
-
-# Google legal
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
-
-# Google Play services configuration
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.error.receiver.system.apps=com.google.android.gms \
-    ro.atrace.core.services=com.google.android.gms,com.google.android.gms.ui,com.google.android.gms.persistent
-
-# TextClassifier
-PRODUCT_PACKAGES += \
-	libtextclassifier_annotator_en_model \
-	libtextclassifier_annotator_universal_model \
-	libtextclassifier_actions_suggestions_universal_model \
-	libtextclassifier_lang_id_model
-
-# Apps
-PRODUCT_PACKAGES += \
-    Aperture
-
-# Use gestures by default
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
-
-# Pixel customization
-TARGET_SUPPORTS_GOOGLE_RECORDER ?= true
-TARGET_INCLUDE_STOCK_ARCORE ?= true
-TARGET_INCLUDE_LIVE_WALLPAPERS ?= true
-TARGET_SUPPORTS_QUICK_TAP ?= false
-TARGET_SUPPORTS_CALL_RECORDING ?= true
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/ethereal/overlay
+DEVICE_PACKAGE_OVERLAYS += vendor/ethereal/overlay/common
 
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= true
@@ -231,48 +193,30 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
 endif
 
-# Repainter integration
+# Themes
 PRODUCT_PACKAGES += \
-    RepainterServicePriv
+    AndroidBlackThemeOverlay \
+    AndroidVividTheme \
+    AndroidSnowPaintDropTheme \
+    AndroidEspressoTheme
 
-# NexusLauncher resources
-PRODUCT_PACKAGES += \
-    NexusLauncherResOverlay
+# RRO
+include vendor/ethereal/config/rro_overlays.mk
 
-# Audio
-$(call inherit-product, vendor/ethereal/config/audio.mk)
-
-# Bootanimation
-$(call inherit-product, vendor/ethereal/config/bootanimation.mk)
-
-# Monochromatic monet theme style
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    persist.sysui.monochromatic=true
-
-# Fonts
-$(call inherit-product, vendor/ethereal/config/fonts.mk)
-
-# Gapps
-ifeq ($(WITH_GAPPS),true)
-$(call inherit-product, vendor/ethereal/config/gapps.mk)
-else
-$(call inherit-product, vendor/ethereal/config/packages.mk)
-endif
+# Versioning
 include vendor/ethereal/config/version.mk
 
+# BootAnimation
+include vendor/ethereal/config/bootanimation.mk
 
-# OTA
-$(call inherit-product, vendor/ethereal/config/ota.mk)
+# Fonts
+$(call inherit-product, vendor/ethereal/fonts/fonts.mk)
 
-# RRO Overlays
-$(call inherit-product, vendor/ethereal/config/rro_overlays.mk)
+# Audio
+$(call inherit-product, vendor/ethereal/audio/audio.mk)
 
-# Pixel Framework
-$(call inherit-product, vendor/pixel-framework/config.mk)
+# # Icon packs
+$(call inherit-product, vendor/ethereal/themes/icon_packs/icon_packs.mk)
 
-# Themed icons
-$(call inherit-product, packages/overlays/ThemeIcons/config.mk)
-
--include $(WORKSPACE)/build_env/image-auto-bits.mk
-
-
+# Include extra packages
+include vendor/ethereal/config/packages.mk

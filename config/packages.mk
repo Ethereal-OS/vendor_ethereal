@@ -1,55 +1,53 @@
 # Ethereal packages
-ifeq ($(WITH_GAPPS),false)
-	PRODUCT_PACKAGES += \
-	    Contacts \
-	    DeskClock \
-	    Dialer \
-	    Gallery2 \
-	    LatinIME \
-	    Messaging \
-	    NexusLauncher \
-	    SafetyHub \
-	    SecurityHub \
-	    SettingsIntelligence 
-
-endif
-
-
-# Apps
 PRODUCT_PACKAGES += \
-    AudioFX \
-    Backgrounds \
+    Covers \
+    Terminal \
     Eleven \
     Etar \
-    Recorder \
-    Music \
-    Profiles \
-    RepainterService \
-    Seedvault \
-    Via \
-    WallpaperPicker \
-    WallpaperPicker2
+    ThemePicker \
+    OmniJaws \
+    WeatherIcons \
+    ThemesStub \
+    GameSpace \
+    ParallelSpace \
+    SetupWizard \
+    Seedvault
 
-# Customizations
-PRODUCT_PACKAGES += \
-    LineageNavigationBarNoHint \
-    NavigationBarMode2ButtonOverlay
-
-# Media
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    media.recorder.show_manufacturer_and_model=true
-
-# SystemUI plugins
-PRODUCT_PACKAGES += \
-    QuickAccessWallet
-
-
-
-ifneq ($(TARGET_INCLUDE_OEM_CAMERA),true)
-PRODUCT_PACKAGES += \
-    Aperture
+ifeq ($(ETHEREAL_BUILD_TYPE), OFFICIAL)
+    PRODUCT_PACKAGES += \
+	Updater
 endif
 
+# Combined icons
+PRODUCT_PACKAGES += \
+    CombinedIconsOverlay
+
+# Browser
+PRODUCT_PACKAGES += \
+    Jellyfish
+
+# Graphene Apps
+ifeq ($(GrapheneApps),true)
+     PRODUCT_PACKAGES += \
+         Apps
+endif
+
+# Camera
+ifneq ($(PRODUCT_NO_CAMERA),true)
+PRODUCT_PACKAGES += \
+    Flash
+endif
+
+# BtHelper
+PRODUCT_PACKAGES += \
+    BtHelper
+
+# EtherealOS UDFPS icon animations
+EXTRA_UDFPS_ANIMATIONS ?= false
+ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
+PRODUCT_PACKAGES += \
+    UdfpsResources
+endif
 
 # Extra tools in Ethereal
 PRODUCT_PACKAGES += \
@@ -91,7 +89,10 @@ PRODUCT_PACKAGES += \
     ssh-keygen \
     start-ssh
 
-ifneq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/bin/procmem
-endif
+# turbo
+PRODUCT_PACKAGES += \
+    Turbo
+
+# rsync
+PRODUCT_PACKAGES += \
+    rsync

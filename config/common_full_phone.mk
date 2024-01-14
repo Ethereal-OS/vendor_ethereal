@@ -1,19 +1,15 @@
-# Telephony
-
-IS_PHONE := true
-
-# World APN list
-PRODUCT_PACKAGES += \
-    apns-conf.xml
-
-# Telephony packages
-PRODUCT_PACKAGES += \
-    Stk
-
-# Tethering - allow without requiring a provisioning app
-# (for devices that check this)
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    net.tethering.noprovisioning=true
-
-# Inherit full common VoidUI stuff
+# Inherit full common Ethereal stuff
 $(call inherit-product, vendor/ethereal/config/common_full.mk)
+
+# Required packages
+PRODUCT_PACKAGES += \
+    LatinIME
+
+# Include Ethereal LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/ethereal/overlay/dictionaries
+
+# Enable support of one-handed mode
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.support_one_handed_mode=true
+
+$(call inherit-product, vendor/ethereal/config/telephony.mk)
