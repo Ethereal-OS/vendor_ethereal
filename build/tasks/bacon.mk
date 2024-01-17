@@ -14,17 +14,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CUSTOM_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CUSTOM_VERSION).zip
+# -----------------------------------------------------------------
+# ETHEREAL OTA update package
+
+ETHEREAL_TARGET_PACKAGE := $(PRODUCT_OUT)/ethereal-$(ETHEREAL_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
 
+
+CL_PRP="\033[35m"
+CL_RED="\033[31m"
+CL_GRN="\033[32m"
+CL_YLW="\033[33m"
+CL_CYN="\033[36m"
+
+
 .PHONY: bacon
 bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CUSTOM_TARGET_PACKAGE)
-	$(hide) $(SHA256) $(CUSTOM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CUSTOM_TARGET_PACKAGE).sha256sum
-	$(hide) $(MD5) $(CUSTOM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CUSTOM_TARGET_PACKAGE).md5sum
-	$(hide) ./vendor/ethereal/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(CUSTOM_VERSION).zip $(ETHEREAL_BASE_VERSION)
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(ETHEREAL_TARGET_PACKAGE)
+	$(hide) $(SHA256) $(ETHEREAL_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(ETHEREAL_TARGET_PACKAGE).sha256sum
+	$(hide) $(MD5) $(ETHEREAL_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(ETHEREAL_TARGET_PACKAGE).md5sum
+	$(hide) ./vendor/ethereal/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(ETHEREAL_VERSION).zip $(ETHEREAL_BASE_VERSION)
 	@echo -e ${CL_CYN}""${CL_CYN}
 	@echo -e ${CL_CYN}"o--o  o-O-o  o  o  o--o  o--o   o--o    O   o    "${CL_CYN}
 	@echo -e ${CL_CYN}"|       |    |  |  |     |   |  |      / \  |    "${CL_CYN}
@@ -33,8 +44,8 @@ bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e ${CL_CYN}"o--o    o    o  o  o--o  o   o  o--o  o   o O---o"${CL_CYN}                                 
 	@echo -e ${CL_CYN}""${CL_CYN}
 	@echo -e ${CL_CYN}"===========-Package Completed-==========="${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(CUSTOM_TARGET_PACKAGE)${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"MD5: "${CL_YLW}" `cat $(CUSTOM_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1` "${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"SHA256: "${CL_YLW}" `sha256sum $(CUSTOM_TARGET_PACKAGE) | cut -d ' ' -f 1` "${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"Size: "${CL_YLW}" `ls -l $(CUSTOM_TARGET_PACKAGE) | cut -d ' ' -f 5` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(ETHEREAL_TARGET_PACKAGE)${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"MD5: "${CL_YLW}" `cat $(ETHEREAL_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"SHA256: "${CL_YLW}" `sha256sum $(ETHEREAL_TARGET_PACKAGE) | cut -d ' ' -f 1` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"Size: "${CL_YLW}" `ls -l $(ETHEREAL_TARGET_PACKAGE) | cut -d ' ' -f 5` "${CL_RST}
 	@echo -e ${CL_CYN}"===========-----Thanks :)-----==========="${CL_RST}
