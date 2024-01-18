@@ -1,5 +1,3 @@
-# Branding
-$(call inherit-product, vendor/ethereal/config/branding.mk)
 
 PRODUCT_BRAND ?= ETHEREAL
 
