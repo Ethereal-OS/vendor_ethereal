@@ -17,7 +17,7 @@
 # -----------------------------------------------------------------
 # ETHEREAL OTA update package
 
-ETHEREAL_TARGET_PACKAGE := $(PRODUCT_OUT)/ethereal-$(ETHEREAL_VERSION).zip
+ETHEREAL_TARGET_PACKAGE := $(PRODUCT_OUT)/$(ETHEREAL_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
