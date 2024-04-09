@@ -63,9 +63,9 @@ if [ -f $existingOTAjson ]; then
 	if [ ! -z "$recovery" ]; then
 		recovery="https:"$recovery
 	fi
-	paypal=`grep -n "\"paypal\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
-	if [ ! -z "$paypal" ]; then
-		paypal="https:"$paypal
+	buymeacoffee=`grep -n "\"buymeacoffee\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
+	if [ ! -z "$buymeacoffee" ]; then
+		buymeacoffee="https:"$buymeacoffee
 	fi
 	telegram=`grep -n "\"telegram\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
 	if [ ! -z "$telegram" ]; then
@@ -103,7 +103,7 @@ if [ -f $existingOTAjson ]; then
 			"modem": "'$modem'",
 			"bootloader": "'$bootloader'",
 			"recovery": "'$recovery'",
-			"paypal": "'$paypal'",
+			"buymeacoffee": "'$buymeacoffee'",
 			"telegram": "'$telegram'",
 			"dt": "'$dt'",
 			"common-dt": "'$common'",
