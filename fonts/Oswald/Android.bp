@@ -1,0 +1,63 @@
+/**
+ * Copyright (C) 2021 VoltageOS
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+prebuilt_font {
+    name: "Oswald-Bold.ttf",
+    src: "Oswald-Bold.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-BoldItalic.ttf",
+    src: "Oswald-BoldItalic.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-Light.ttf",
+    src: "Oswald-Light.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-LightItalic.ttf",
+    src: "Oswald-LightItalic.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-Medium.ttf",
+    src: "Oswald-Medium.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-MediumItalic.ttf",
+    src: "Oswald-MediumItalic.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-Regular.ttf",
+    src: "Oswald-Regular.ttf",
+    product_specific: true,
+}
+
+prebuilt_font {
+    name: "Oswald-RegularItalic.ttf",
+    src: "Oswald-RegularItalic.ttf",
+    product_specific: true,
+}
