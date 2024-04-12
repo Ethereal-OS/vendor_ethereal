@@ -262,115 +262,6 @@ PRODUCT_PACKAGES += \
     IconPackXperiaSettingsOverlay \
     IconPackXperiaSystemUIOverlay
 
-# Icon Shapes
-PRODUCT_PACKAGES += \
-    IconShapeCloudyOverlay \
-    IconShapeCylinderOverlay \
-    IconShapeFlowerOverlay \
-    IconShapeHeartOverlay \
-    IconShapeHexagonOverlay \
-    IconShapeLeafOverlay \
-    IconShapeMeowOverlay \
-    IconShapePebbleOverlay \
-    IconShapeRoundedHexagonOverlay \
-    IconShapeRoundedRectOverlay \
-    IconShapeSquareOverlay \
-    IconShapeSquircleOverlay \
-    IconShapeStretchedOverlay \
-    IconShapeTaperedRectOverlay \
-    IconShapeTeardropOverlay \
-    IconShapeVesselOverlay
-
-# Navbar
-PRODUCT_PACKAGES += \
-    GesturalNavigationOverlayLong \
-    GesturalNavigationOverlayMedium \
-    GesturalNavigationOverlayHidden
-
-# Navbar styles
-PRODUCT_PACKAGES += \
-    NavbarAndroidOverlay \
-	NavbarAsusOverlay \
-	NavbarDoraOverlay \
-    NavbarMotoOverlay \
-    NavbarNexusOverlay \
-    NavbarOldOverlay \
-    NavbarOnePlusOverlay \
-    NavbarOneUiOverlay \
-    NavbarSammyOverlay \
-    NavbarTecnoCamonOverlay
-
-# QS UI Style
-PRODUCT_PACKAGES += \
-    A11QSUI \
-    QSOutline \
-    QSTwoToneAccent \
-    QSTwoToneAccentTrans \
-    QSShaded \
-    QSCyberPunk \
-    QSNeumorph \
-    QSReflected \
-    QSSurround \
-    QSThin
-
-# Signal Icons
-PRODUCT_PACKAGES += \
-    AquariumSignalOverlay \
-    BarsSignalOverlay \
-    ButterflySignalOverlay \
-    CircleSignalOverlay \
-    DaunSignalOverlay \
-    DecSignalOverlay \
-    DeepSignalOverlay \
-    DoraSignalOverlay \
-    EqualSignalOverlay \
-    FanSignalOverlay \
-    GradiconSignalOverlay \
-    HuaweiSignalOverlay \
-    InsideSignalOverlay \
-    IosSignalOverlay \
-    MiniSignalOverlay \
-    NothingDotSignalOverlay \
-    OdinSignalOverlay \
-    PillsSignalOverlay \
-    RelSignalOverlay \
-    RomanSignalOverlay \
-    RoundSignalOverlay \
-    ScrollSignalOverlay \
-    SeaSignalOverlay \
-    SneakySignalOverlay \
-    StackSignalOverlay \
-    StrokeSignalOverlay \
-    WannuiSignalOverlay \
-    WavySignalOverlay \
-    WindowsSignalOverlay \
-    WingSignalOverlay \
-    XperiaSignalOverlay \
-    ZigZagSignalOverlay \
-	AuroraSignalOverlay \
-	FaintUISignalOverlay \
-	ForlornSignalOverlay \
-	PlumpySignalOverlay
-
-# WiFi Icons
-PRODUCT_PACKAGES += \
-    BarsWiFiOverlay \
-    DoraWiFiOverlay \
-    GradiconWiFiOverlay \
-    InsideWiFiOverlay \
-    NothingDotWiFiOverlay \
-    RoundWiFiOverlay \
-    SneakyWiFiOverlay \
-    StrokeWiFiOverlay \
-    WavyWiFiOverlay \
-    WeedWiFiOverlay \
-    XperiaWiFiOverlay \
-    ZigZagWiFiOverlay \
-	AuroraWiFiOverlay \
-	FaintUIWiFiOverlay \
-	ForlornWiFiOverlay \
-	PlumpyWiFiOverlay
-
 
 # RRO
 include vendor/ethereal/config/rro_overlays.mk
@@ -387,9 +278,20 @@ $(call inherit-product, vendor/ethereal/fonts/fonts.mk)
 # Audio
 $(call inherit-product, vendor/ethereal/audio/audio.mk)
 
-# # Icon packs
+# Icons
+$(call inherit-product, vendor/ethereal/themes/icons/icons.mk)
+
+# Icon packs
 $(call inherit-product, vendor/ethereal/themes/icon_packs/icon_packs.mk)
+
+# Icon Shape
+$(call inherit-product, vendor/ethereal/themes/iconshapes/iconshapes.mk)
+
+# QS
+$(call inherit-product, vendor/ethereal/themes/qs/qs.mk)
+
+# Navigation Bar
+$(call inherit-product, vendor/ethereal/themes/navbar/navbar.mk)
 
 # Include extra packages
 include vendor/ethereal/config/packages.mk
-include vendor/addons/config.mk
