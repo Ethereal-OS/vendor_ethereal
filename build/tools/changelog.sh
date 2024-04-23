@@ -24,6 +24,8 @@ then
 	rm -f $Changelog
 fi
 
+touch $Changelog
+
 # define changelog_days using 'export changelog_days=10'
 # this can be done before intiate build environment (. build/envsetup.sh)
 if [ -z $changelog_days ];then
@@ -58,12 +60,7 @@ for i in $(seq $changelog_days); do
     echo >> $Changelog
 done
 
-if [ -f "$Changelog" ]; then
-    if cp "$Changelog" "$OUT_DIR/target/product/$DEVICE/system/etc/"; then
-        mv "$Changelog" "$OUT_DIR/target/product/$DEVICE/changelog_${DEVICE}.txt" || echo "Failed to move changelog file to $OUT_DIR/target/product/$DEVICE/changelog_${DEVICE}.txt"
-    else
-        echo "Failed to copy changelog file to $OUT_DIR/target/product/$DEVICE/system/etc/"
-    fi
-else
-    echo "Changelog file does not exist"
-fi
+sed -i 's/project/   */g' $Changelog
+
+cp $Changelog $OUT_DIR/target/product/$DEVICE/system/etc/
+mv $Changelog $OUT_DIR/target/product/$DEVICE/
