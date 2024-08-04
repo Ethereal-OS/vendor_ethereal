@@ -153,7 +153,7 @@
     <bool name="config_supportsCamToggle">true</bool>
 
     <!-- Corner radius of system dialogs -->
-    <dimen name="config_dialogCornerRadius">28dp</dimen>
+    <dimen name="config_dialogCornerRadius">6dp</dimen>
 
     <!-- System-provided radius for the background view of app widgets. The resolved value of this resource may change at runtime. -->
     <dimen name="system_app_widget_background_radius">28dp</dimen>
