@@ -4,12 +4,12 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="euclid.updater.vanila.overlay">
+    package="ethereal.updater.vanila.overlay">
 
     <overlay
         android:isStatic="true"
         android:priority="250"
-        android:targetPackage="com.euclid.updater" />
+        android:targetPackage="com.ethereal.updater" />
 
     <application android:label="Vanilla Update" android:hasCode="false" android:allowBackup="false"/>
 </manifest>

@@ -35,12 +35,12 @@ product = sys.argv[1]
 
 DEBUG = False
 
-custom_local_manifest = ".repo/local_manifests/euclid.xml"
+custom_local_manifest = ".repo/local_manifests/ethereal.xml"
 custom_default_revision = "qpr3"
 custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'qpr3')
-custom_dependencies = "euclid.dependencies"
-org_manifest = "euclid-devices"  # leave empty if org is provided in manifest
-org_display = "euclid-Devices"  # needed for displaying
+custom_dependencies = "ethereal.dependencies"
+org_manifest = "ethereal-devices"  # leave empty if org is provided in manifest
+org_display = "Ethereal-Devices"  # needed for displaying
 
 github_auth = None
 

@@ -4,6 +4,6 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
 endif
 
-# euclidOS System Version
+# etherealOS System Version
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.modversion=$(EUCLID_VERSION)
+    ro.modversion=$(ETHEREAL_VERSION)

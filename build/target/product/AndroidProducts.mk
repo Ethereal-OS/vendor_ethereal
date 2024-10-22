@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/euclid_sdk_phone_x86_64.mk
+    $(LOCAL_DIR)/ethereal_sdk_phone_x86_64.mk
 
 COMMON_LUNCH_CHOICES := \
-    euclid_sdk_phone_x86_64-userdebug
+    ethereal_sdk_phone_x86_64-userdebug

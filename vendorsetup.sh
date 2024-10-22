@@ -1,8 +1,16 @@
 # Shebang is intentionally missing - do not run as a script
 
 # Override host metadata to make builds more reproducible and avoid leaking info
-export BUILD_USERNAME=vertex
-export BUILD_HOSTNAME=euclidOS
+export BUILD_USERNAME=RYZEN
+export BUILD_HOSTNAME=ETHEREAL
+
+lunch_others_targets=()
+for device in $(python vendor/ethereal/tools/get_official_devices.py)
+do
+    for var in user userdebug eng; do
+        lunch_others_targets+=("ethereal_$device-$var")
+    done
+done
 
 # ABI compatibility checks fail for several reasons:
 #   - The update to Clang 12 causes some changes, but no breakage has been

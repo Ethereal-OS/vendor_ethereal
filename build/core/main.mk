@@ -1,2 +1,2 @@
-# Include euclidOS versions
-include $(TOPDIR)vendor/euclid/build/core/main_version.mk
+# Include etherealOS versions
+include $(TOPDIR)vendor/ethereal/build/core/main_version.mk

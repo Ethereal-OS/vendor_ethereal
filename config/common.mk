@@ -1,16 +1,16 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= euclidOS
+PRODUCT_BRAND ?= EtherealOS
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_IST_DATE=0
 
-EUCLID_ZIP_TYPE := Vanilla
+ethereal_ZIP_TYPE := Vanilla
 
 # Gapps
-ifeq ($(EUCLID_GAPPS), true)
+ifeq ($(ETHEREAL_GAPPS), true)
     $(call inherit-product, vendor/gms/common/common-vendor.mk)
-    EUCLID_ZIP_TYPE := Gapps
+    ethereal_ZIP_TYPE := Gapps
     SystemUI_Clocks := false
     PRODUCT_PACKAGES += \
 	OTAGapps
@@ -82,18 +82,18 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/euclid/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/euclid/prebuilt/common/bin/50-euclid.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-euclid.sh
+    vendor/ethereal/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/ethereal/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/ethereal/prebuilt/common/bin/50-ethereal.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-ethereal.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/addon.d/50-euclid.sh
+    system/addon.d/50-ethereal.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/euclid/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/euclid/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/ethereal/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/ethereal/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/ethereal/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -108,23 +108,23 @@ endif
 
 # DroidX-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/etc/init/init.euclid-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.euclid-system_ext.rc
+    vendor/ethereal/prebuilt/common/etc/init/init.ethereal-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.ethereal-system_ext.rc
 
 # GMS Permissions
 PRODUCT_COPY_FILES += \
-    vendor/euclid/config/permissions/privapp-permissions-gms.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-gms.xml
+    vendor/ethereal/config/permissions/privapp-permissions-gms.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-gms.xml
 
 # App lock permission
 PRODUCT_COPY_FILES += \
-   vendor/euclid/config/permissions/privapp-permissions-settings.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-settings.xml
+   vendor/ethereal/config/permissions/privapp-permissions-settings.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-settings.xml
 
 # # Some permissions
 PRODUCT_COPY_FILES += \
-    vendor/euclid/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml \
-    vendor/euclid/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml \
+    vendor/ethereal/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml \
+    vendor/ethereal/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml \
 
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/etc/init/init.custom-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.custom-system_ext.rc
+    vendor/ethereal/prebuilt/common/etc/init/init.custom-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.custom-system_ext.rc
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -137,7 +137,7 @@ PRODUCT_COPY_FILES += \
 
 # Google Photos Pixel Exclusive XML
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
+    vendor/ethereal/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -152,7 +152,7 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
 # Clean up packages cache to avoid wrong strings and resources
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/bin/clean_cache.sh:system/bin/clean_cache.sh
+    vendor/ethereal/prebuilt/common/bin/clean_cache.sh:system/bin/clean_cache.sh
 
 # Strip the local variable table and the local variable type table to reduce
 # the size of the system image. This has no bearing on stack traces, but will
@@ -166,7 +166,7 @@ SYSTEMUI_OPTIMIZE_JAVA ?= true
 
 # Partition overlay
 PRODUCT_COPY_FILES += \
-    vendor/euclid/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
+    vendor/ethereal/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
 
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
@@ -180,7 +180,7 @@ endif
 
 ifneq ($(TARGET_DISABLE_EPPE),true)
 # Require all requested packages to exist
-$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(EUCLID_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml rild Calendar Launcher3 Launcher3Go Launcher3QuickStep Launcher3QuickStepGo android.hidl.memory@1.0-impl.vendor vndk_apex_snapshot_package)
+$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(ETHEREAL_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml rild Calendar Launcher3 Launcher3Go Launcher3QuickStep Launcher3QuickStepGo android.hidl.memory@1.0-impl.vendor vndk_apex_snapshot_package)
 endif
 
 # Themed Icon
@@ -255,7 +255,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/ethereal/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -331,7 +331,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     setupwizard.feature.day_night_mode_enabled=true \
 
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/euclid/overlay/common
+    vendor/ethereal/overlay/common
 
 PRODUCT_PACKAGES += \
     NetworkStackOverlay \
@@ -345,7 +345,7 @@ PRODUCT_PACKAGES += \
 
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/euclid/build/target/product/security/euclid
+    vendor/ethereal/build/target/product/security/ethereal
 
 # Themepicker
 PRODUCT_PACKAGES += \
@@ -362,12 +362,12 @@ PRODUCT_PACKAGES += \
     OmniStyle \
     Recorder \
     ExactCalculator \
-    euclidOSWallpaperStub \
+    etherealOSWallpaperStub \
     ParallelSpace \
     LatinIME \
 
 PRODUCT_COPY_FILES += \
-    vendor/euclid/prebuilt/common/etc/sysconfig/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml
+    vendor/ethereal/prebuilt/common/etc/sysconfig/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml
 
 # Repainter integration
 PRODUCT_PACKAGES += \
@@ -387,16 +387,16 @@ $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
 endif
 
 # Audio
-include vendor/euclid/config/audio.mk
+include vendor/ethereal/config/audio.mk
 
 # Themes
 include packages/overlays/Themes/themes.mk
 
-include vendor/euclid/config/ota.mk
-include vendor/euclid/config/props.mk
-include vendor/euclid/config/version.mk
-include vendor/euclid/config/bootanimation.mk
-include vendor/euclid/config/telephony.mk
-include vendor/euclid/config/themes.mk
--include vendor/euclid-priv/keys/keys.mk
+include vendor/ethereal/config/ota.mk
+include vendor/ethereal/config/props.mk
+include vendor/ethereal/config/version.mk
+include vendor/ethereal/config/bootanimation.mk
+include vendor/ethereal/config/telephony.mk
+include vendor/ethereal/config/themes.mk
+-include vendor/ethereal-priv/keys/keys.mk
 include vendor/prebuilds/prebuilds.mk

@@ -1,5 +1,5 @@
-# Inherit common euclidOS stuff
-$(call inherit-product, vendor/euclid/config/common_mobile.mk)
+# Inherit common EtherealOS stuff
+$(call inherit-product, vendor/ethereal/config/common_mobile.mk)
 
 PRODUCT_SIZE := full
 
