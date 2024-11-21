@@ -15,9 +15,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/voltage_arm64.mk \
-    $(LOCAL_DIR)/voltage_arm64_ab.mk \
+    $(LOCAL_DIR)/ethereal_arm64.mk \
+    $(LOCAL_DIR)/ethereal_arm64_ab.mk \
 
 COMMON_LUNCH_CHOICES := \
-    voltage_arm64-userdebug \
-    voltage_arm64_ab-userdebug \
+    ethereal_arm64-userdebug \
+    ethereal_arm64_ab-userdebug \

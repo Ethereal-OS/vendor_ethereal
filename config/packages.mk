@@ -1,4 +1,4 @@
-# VoltageOS packages
+# EtherealOS packages
 PRODUCT_PACKAGES += \
     Covers \
     Etar \
@@ -7,7 +7,7 @@ PRODUCT_PACKAGES += \
     GmsCompat \
     GameSpace \
     Apps \
-    VoltageSetupWizard \
+    EtherealSetupWizard \
     Jellyfish \
     LogViewer \
     OmniJaws \
@@ -18,10 +18,10 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Glimpse
 
-ifeq ($(VOLTAGE_BUILD_TYPE), OFFICIAL)
+ifeq ($(ETHEREAL_BUILD_TYPE), OFFICIAL)
     PRODUCT_PACKAGES += \
 	Updater
-include vendor/voltage-priv/keys/keys.mk
+include vendor/ethereal-priv/keys/keys.mk
 endif
 
 ifneq ($(PRODUCT_NO_CAMERA),true)
@@ -33,7 +33,7 @@ endif
 PRODUCT_PACKAGES += \
     BtHelper
 
-# Extra tools in Voltage
+# Extra tools in Ethereal
 PRODUCT_PACKAGES += \
     awk \
     bzip2 \
@@ -48,7 +48,7 @@ PRODUCT_PACKAGES += \
     mke2fs \
     mkfs.exfat
 
-# VoltageOS UDFPS animations
+# EtherealOS UDFPS animations
 ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 PRODUCT_PACKAGES += \
     UdfpsIcons \

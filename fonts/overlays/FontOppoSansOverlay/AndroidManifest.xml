@@ -1,5 +1,5 @@
 <!--
-    Copyright (C) 2021 VoltageOS
+    Copyright (C) 2023 Ethereal OS
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
     limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.voltage.theme.font.opposans">
+    package="org.ethereal.theme.font.opposans">
 
     <overlay android:targetPackage="android"
         android:category="android.theme.customization.font"

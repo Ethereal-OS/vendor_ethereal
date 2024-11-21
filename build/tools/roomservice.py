@@ -3,7 +3,7 @@
 # Copyright (C) 2012-2015, SlimRoms Project
 # Copyright (C) 2018, Resurrection Remix
 # Copyright (C) 2019-2021, WaveOS
-# Copyright (C) 2022, VoltageOS
+# Copyright (C) 2023, EtherealOS
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-custom_local_manifest = ".repo/local_manifests/voltage.xml"
+custom_local_manifest = ".repo/local_manifests/ethereal.xml"
 custom_default_revision = "14"
-custom_dependencies = "voltage.dependencies"
-org_manifest = "VoltageOS-Devices"  # leave empty if org is provided in manifest
-org_display = "VoltageOS-Devices"  # needed for displaying
+custom_dependencies = "ethereal.dependencies"
+org_manifest = "EtherealOS-Devices"  # leave empty if org is provided in manifest
+org_display = "EtherealOS-Devices"  # needed for displaying
 
 default_manifest = ".repo/manifests/default.xml"
-voltage_manifest = ".repo/manifests/snippets/voltage.xml"
+ethereal_manifest = ".repo/manifests/snippets/ethereal.xml"
 lineage_manifest = ".repo/manifests/snippets/external.xml"
 
 github_token = None
@@ -138,7 +138,7 @@ def is_in_manifest(project_path):
 def add_to_manifest(repos, fallback_branch=None):
     lm = load_manifest(custom_local_manifest)
     mlm = load_manifest(default_manifest)
-    voltagem = load_manifest(voltage_manifest)
+    etherealm = load_manifest(ethereal_manifest)
     lineagem = load_manifest(lineage_manifest)
 
     for repo in repos:
@@ -170,8 +170,8 @@ def add_to_manifest(repos, fallback_branch=None):
             continue
 
         existing_m_project = None
-        if exists_in_tree(voltagem, repo_path) != None:
-            existing_m_project = exists_in_tree(voltagem, repo_path)
+        if exists_in_tree(etherealm, repo_path) != None:
+            existing_m_project = exists_in_tree(etherealm, repo_path)
         elif exists_in_tree(lineagem, repo_path) != None:
             existing_m_project = exists_in_tree(lineagem, repo_path)
         elif exists_in_tree(mlm, repo_path) != None:

@@ -1,7 +1,7 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= VoltageOS
+PRODUCT_BRAND ?= EtherealOS
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -47,15 +47,15 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/voltage/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/voltage/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/voltage/prebuilt/common/bin/50-voltage.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-voltage.sh
+    vendor/ethereal/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/ethereal/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/ethereal/prebuilt/common/bin/50-ethereal.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-ethereal.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/voltage/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/voltage/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/voltage/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/ethereal/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/ethereal/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/ethereal/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
@@ -64,19 +64,19 @@ endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/voltage/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
+    vendor/ethereal/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
 
 # Pixel sysconfig from Pixel XL (Photos)
 PRODUCT_COPY_FILES += \
-    vendor/voltage/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
+    vendor/ethereal/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
 
-# Copy all VOLTAGE-specific init rc files
-$(foreach f,$(wildcard vendor/voltage/prebuilt/common/etc/init/*.rc),\
+# Copy all ETHEREAL-specific init rc files
+$(foreach f,$(wildcard vendor/ethereal/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Privapp permissions
 PRODUCT_COPY_FILES += \
-    vendor/voltage/config/permissions/privapp-permissions-custom.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-custom.xml
+    vendor/ethereal/config/permissions/privapp-permissions-custom.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-custom.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -84,7 +84,7 @@ PRODUCT_COPY_FILES += \
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
-    vendor/voltage/prebuilt/google/etc/permissions/privapp-permissions-googleapps-turbo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googleapps-turbo.xml
+    vendor/ethereal/prebuilt/google/etc/permissions/privapp-permissions-googleapps-turbo.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googleapps-turbo.xml
 
 # Enable wireless Xbox 360 controller support
 PRODUCT_COPY_FILES += \
@@ -130,7 +130,7 @@ WITH_DEXPREOPT_DEBUG_INFO := false
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Require all requested packages to exist
-$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(VOLTAGE_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml)
+$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(ETHEREAL_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml)
 
 # Enable whole-program R8 Java optimizations for SystemUI and system_server,
 # but also allow explicit overriding for testing and development.
@@ -167,12 +167,12 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/voltage/config/partner_gms.mk
+-include vendor/ethereal/config/partner_gms.mk
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/voltage/overlay
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/ethereal/overlay
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/voltage/overlay/common \
-    vendor/voltage/overlay/no-rro
+    vendor/ethereal/overlay/common \
+    vendor/ethereal/overlay/no-rro
 
 # Filesystems tools
 PRODUCT_PACKAGES += \
@@ -206,7 +206,7 @@ PRODUCT_PACKAGES += \
     AndroidEspressoTheme
 
 # RRO
-include vendor/voltage/config/rro_overlays.mk
+include vendor/ethereal/config/rro_overlays.mk
 
 # SetupWizard
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -214,25 +214,25 @@ PRODUCT_PRODUCT_PROPERTIES += \
     setupwizard.feature.day_night_mode_enabled=true
 
 # Versioning
-include vendor/voltage/config/version.mk
+include vendor/ethereal/config/version.mk
 
 # BootAnimation
-include vendor/voltage/config/bootanimation.mk
+include vendor/ethereal/config/bootanimation.mk
 
 # Certification
 $(call inherit-product-if-exists, vendor/certification/config.mk)
 
 # Fonts
-$(call inherit-product, vendor/voltage/fonts/fonts.mk)
+$(call inherit-product, vendor/ethereal/fonts/fonts.mk)
 
 # Inherit SystemUI Clocks if they exist
 $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
 
 # Audio
-$(call inherit-product, vendor/voltage/audio/audio.mk)
+$(call inherit-product, vendor/ethereal/audio/audio.mk)
 
 # # Icon packs
-$(call inherit-product, vendor/voltage/themes/icon_packs/icon_packs.mk)
+$(call inherit-product, vendor/ethereal/themes/icon_packs/icon_packs.mk)
 
 # Include extra packages
-include vendor/voltage/config/packages.mk
+include vendor/ethereal/config/packages.mk
