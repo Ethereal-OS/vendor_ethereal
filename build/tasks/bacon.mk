@@ -16,18 +16,29 @@
 # -----------------------------------------------------------------
 # ETHEREAL OTA update package
 
-ETHEREAL_TARGET_PACKAGE := $(PRODUCT_OUT)/Ethereal-$(ETHEREAL_VERSION).zip
+ETHEREAL_TARGET_PACKAGE := $(PRODUCT_OUT)/ETHEREAL-$(ETHEREAL_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
+MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
 
 CL_PRP="\033[35m"
 CL_RED="\033[31m"
 CL_GRN="\033[32m"
+CL_YLW="\033[33m"
+CL_CYN="\033[36m"
 
 .PHONY: bacon
 bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(ETHEREAL_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(ETHEREAL_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(ETHEREAL_TARGET_PACKAGE).sha256sum
+	$(hide) $(MD5) $(ETHEREAL_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(ETHEREAL_TARGET_PACKAGE).md5sum
+	echo -e ${CL_CYN}""${CL_CYN}
+	echo -e ${CL_CYN}"o--o  o-O-o  o  o  o--o  o--o   o--o    O   o    "${CL_CYN}
+	echo -e ${CL_CYN}"|       |    |  |  |     |   |  |      / \  |    "${CL_CYN}
+	echo -e ${CL_CYN}"O-o     |    O--O  O-o   O-Oo   O-o   o---o |    "${CL_CYN}
+	echo -e ${CL_CYN}"|       |    |  |  |     |  \   |     |   | |    "${CL_CYN}
+	echo -e ${CL_CYN}"o--o    o    o  o  o--o  o   o  o--o  o   o O---o"${CL_CYN}                                 
+	echo -e ${CL_CYN}""${CL_CYN}
 	echo -e ${CL_BLD}${CL_RED}"===============================-Package complete-==============================="${CL_RED}
 	echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(ETHEREAL_TARGET_PACKAGE)${CL_RST}
 	echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `cat $(ETHEREAL_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
@@ -36,4 +47,4 @@ bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	echo -e ${CL_BLD}${CL_GRN}"Integer Value:"${CL_RED}" `wc -c $(ETHEREAL_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
 	echo -e ${CL_BLD}${CL_RED}"================================================================================"${CL_RED}
 	@echo "Creating json OTA..." >&2
-	$(hide) ./vendor/ETHEREAL/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) Ethereal-$(ETHEREAL_VERSION).zip
+	$(hide) ./vendor/ethereal/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) ETHEREAL-$(ETHEREAL_VERSION).zip
