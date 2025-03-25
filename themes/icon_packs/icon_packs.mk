@@ -57,4 +57,25 @@ PRODUCT_PACKAGES += \
     IconPackPlumpyAndroidOverlay \
     IconPackXperiaAndroidOverlay \
     IconPackXperiaSettingsOverlay \
-    IconPackXperiaSystemUIOverlay
+    IconPackXperiaSystemUIOverlay \
+    IconShapeCloudyOverlay \
+    IconShapeIosOverlay \
+    IconShapeRoundedRectOverlay \
+    IconShapeStretchedOverlay \
+    IconShapeCylinderOverlay \
+    IconShapeLeafOverlay \
+    IconShapeSamsungOverla \
+    IconShapeTaperedRectOverlay \
+    IconShapeFlowerOverlay \
+    IconShapeMeowOverlay \
+    IconShapeScrollOverlay \
+    IconShapeTeardropOverlay \
+    IconShapeHeartOverlay \
+    IconShapePebbleOverlay \
+    IconShapeSquareOverlay \
+    IconShapeVesselOverlay \
+    IconShapeHexagonOverlay \
+    IconShapeRoundedHexagonOverlay \
+    IconShapeSquircleOverlay
+
+
