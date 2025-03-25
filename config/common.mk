@@ -223,7 +223,7 @@ include vendor/ethereal/config/bootanimation.mk
 $(call inherit-product-if-exists, vendor/certification/config.mk)
 
 # Fonts
-$(call inherit-product, vendor/ethereal/fonts/fonts.mk)
+$(call inherit-product, vendor/ethereal/themes/fonts/fonts.mk)
 
 # Inherit SystemUI Clocks if they exist
 $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
