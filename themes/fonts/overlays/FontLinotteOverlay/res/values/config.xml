@@ -16,7 +16,7 @@
 -->
 <resources>
     <string name="config_bodyFontFamily" translatable="false">linotte</string>
-    <string name="config_bodyFontFamilyMedium" translatable="false">linotte-semi-bold</string>
+    <string name="config_bodyFontFamilyMedium" translatable="false">linotte-medium</string>
     <string name="config_headlineFontFamily" translatable="false">linotte</string>
-    <string name="config_headlineFontFamilyMedium" translatable="false">linotte-bold</string>
+    <string name="config_headlineFontFamilyMedium" translatable="false">linotte-medium</string>
 </resources>
