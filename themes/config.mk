@@ -307,3 +307,13 @@ PRODUCT_PACKAGES += \
 	qqs_portrait_5x4 \
 	qqs_portrait_5x5 \
 	qqs_portrait_5x6
+
+# Volume Styles
+PRODUCT_PACKAGES += \
+    VolumeDoubleLayer \
+    VolumeGradient \
+    VolumeNeumorph \
+    VolumeNeumorphOutline \
+    VolumeOutline \
+    VolumeShadedLayer \
+    VolumeAOSPRevamped
