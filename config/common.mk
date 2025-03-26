@@ -198,14 +198,6 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 #    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
 #endif
 
-# Themes
-PRODUCT_PACKAGES += \
-    AndroidAmoledBlackThemeOverlay \
-    AndroidBlackThemeOverlay \
-    AndroidVividTheme \
-    AndroidSnowPaintDropTheme \
-    AndroidEspressoTheme
-
 # RRO
 include vendor/ethereal/config/rro_overlays.mk
 
@@ -232,8 +224,8 @@ $(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
 # Audio
 $(call inherit-product, vendor/ethereal/audio/audio.mk)
 
-# # Icon packs
-$(call inherit-product, vendor/ethereal/themes/icon_packs/icon_packs.mk)
-
 # Include extra packages
 include vendor/ethereal/config/packages.mk
+
+# Include Fonts, Themes & Overlays
+$(call inherit-product, vendor/ethereal/themes/config.mk)
