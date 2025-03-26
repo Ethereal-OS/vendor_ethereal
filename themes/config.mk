@@ -227,3 +227,10 @@ PRODUCT_PACKAGES += \
     NotifDuoline \
     NotifIOS \
     NotifLayers
+    
+# Power Menu Themes
+PRODUCT_PACKAGES += \
+    PowerCyberPunk \
+    PowerDuoline \
+    PowerIOS \
+    PowerLayers
