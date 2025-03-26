@@ -220,3 +220,10 @@ PRODUCT_PACKAGES += \
     NavbarOneUiOverlay \
     NavbarSammyOverlay \
     NavbarTecnoCamonOverlay
+    
+# Notification Themes
+PRODUCT_PACKAGES += \
+    NotifCyberPunk \
+    NotifDuoline \
+    NotifIOS \
+    NotifLayers
