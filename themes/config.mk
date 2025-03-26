@@ -14,6 +14,12 @@
 LOCAL_PATH := $(call my-dir)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
+ifeq ($(TARGET_HAS_UDFPS),true)
+PRODUCT_PACKAGES += \
+    UdfpsIcons \
+    UdfpsAnimations
+endif
+
 # # Icon packs
 $(call inherit-product, vendor/ethereal/themes/icon_packs/icon_packs.mk)
 
