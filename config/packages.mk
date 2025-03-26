@@ -24,6 +24,12 @@ ifeq ($(ETHEREAL_BUILD_TYPE), OFFICIAL)
 include vendor/ethereal-priv/keys/keys.mk
 endif
 
+# Basic call recorder
+ifeq ($(strip $(TARGET_PREBUILT_BCR)),true)
+PRODUCT_PACKAGES += \
+    Bcr
+endif
+
 ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \
     Aperture
