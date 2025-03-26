@@ -47,10 +47,3 @@ PRODUCT_PACKAGES += \
     fsck.exfat \
     mke2fs \
     mkfs.exfat
-
-# EtherealOS UDFPS animations
-ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
-PRODUCT_PACKAGES += \
-    UdfpsIcons \
-    UdfpsAnimations
-endif
