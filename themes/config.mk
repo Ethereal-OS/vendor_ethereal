@@ -234,3 +234,10 @@ PRODUCT_PACKAGES += \
     PowerDuoline \
     PowerIOS \
     PowerLayers
+
+# Progress Bar Themes
+PRODUCT_PACKAGES += \
+    PGB_BlockyThumb \
+    PGB_MinimalThumb \
+    PGB_OutlineThumb \
+    PGB_Shishu
