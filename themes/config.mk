@@ -14,7 +14,8 @@
 LOCAL_PATH := $(call my-dir)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
-ifeq ($(TARGET_HAS_UDFPS),true)
+# Ethereal UDFPS animations
+ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 PRODUCT_PACKAGES += \
     UdfpsIcons \
     UdfpsAnimations
