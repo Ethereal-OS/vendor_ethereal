@@ -16,7 +16,8 @@ PRODUCT_PACKAGES += \
     Seedvault \
     Datura \
     ExactCalculator \
-    Glimpse
+    Glimpse \
+    OmniStyle
 
 ifeq ($(ETHEREAL_BUILD_TYPE), OFFICIAL)
     PRODUCT_PACKAGES += \
