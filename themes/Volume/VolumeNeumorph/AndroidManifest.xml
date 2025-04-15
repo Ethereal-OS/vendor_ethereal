@@ -19,7 +19,7 @@
     package="com.android.system.volume.style3"
     android:versionCode="1"
     android:versionName="1.0">
-    <overlay android:targetPackage="com.android.systemui" android:category="android.theme.customization.volume_panel" android:priority="1"/>
+    <overlay android:targetPackage="com.android.systemui" android:category="android.theme.customization.volume_style" android:priority="1"/>
 
     <application android:label="Volume Neumorph" android:hasCode="false" android:allowBackup="false"/>
 </manifest>
