@@ -77,5 +77,3 @@ PRODUCT_PACKAGES += \
     IconShapeHexagonOverlay \
     IconShapeRoundedHexagonOverlay \
     IconShapeSquircleOverlay
-
-

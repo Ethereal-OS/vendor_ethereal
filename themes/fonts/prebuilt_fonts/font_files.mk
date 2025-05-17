@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := vendor/ethereal/themes/fonts
-
 # We have to use PRODUCT_PACKAGES (together with BUILD_PREBUILT) instead of
 # PRODUCT_COPY_FILES to install the font files, so that the NOTICE file can
 # get installed too.
@@ -156,10 +154,3 @@ PRODUCT_PACKAGES += \
     Rookery-Italic.otf \
     Rookery-Medium.otf \
     Rookery-Regular.otf
-
-# Register new fonts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml \
-
-# Include extra addon fonts
--include vendor/ethereal/fonts/extra/extra.mk

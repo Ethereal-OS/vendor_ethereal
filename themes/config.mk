@@ -21,6 +21,9 @@ PRODUCT_PACKAGES += \
     UdfpsAnimations
 endif
 
+# Fonts
+$(call inherit-product, vendor/ethereal/themes/fonts/fonts.mk)
+
 # # Icon packs
 $(call inherit-product, vendor/ethereal/themes/icon_packs/icon_packs.mk)
 
@@ -318,3 +321,6 @@ PRODUCT_PACKAGES += \
     VolumeOutline \
     VolumeShadedLayer \
     VolumeAOSPRevamped
+
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,vendor/ethereal/themes/fonts/overlays,$(TARGET_COPY_OUT_PRODUCT)/fonts)
