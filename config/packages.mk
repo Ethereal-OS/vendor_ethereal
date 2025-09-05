@@ -6,6 +6,7 @@ PRODUCT_PACKAGES += \
     ThemesStub \
     GmsCompat \
     GameSpace \
+    FMRadio \
     Apps \
     EtherealSetupWizard \
     Jellyfish \
