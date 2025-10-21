@@ -4,6 +4,7 @@ PRODUCT_PACKAGES += \
     Terminal \
     Eleven \
     Etar \
+    FMRadio \
     ThemePicker \
     OmniJaws \
     WeatherIcons \
